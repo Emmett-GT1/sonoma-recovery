@@ -2,12 +2,6 @@
 
 ### Full installer downloaded straight from Apple and then recover image is extracted
 
-## 🚨Updates🚨
-
-I renamed `Generate macOS Sequoia Recovery Image` workflow to `Sequoia Beta 1 Recovery Image`, this will always generate the recovery image for the first beta of Sequoia.
-
-But if you are looking for the latest beta recovery image run `Sequoia Beta (latest) Recovery Image`
-
 # Why you may need this ?
 
 Without the recovery image, you need to be on macOS to install Sequoia. Since there's no stable release yet, no official recovery images are available either.
