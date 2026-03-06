@@ -1,4 +1,4 @@
-name: Tahoe Beta (latest) Recovery Image
+name: Sequoia Beta (latest) Recovery Image
 
 on:
   workflow_dispatch:
@@ -15,11 +15,11 @@ jobs:
 
       - name: Download macOS Installer (latest beta)
         run: |
-          python ./gibMacOS/gibMacOS.py -c developer -v Tahoe -m 26 -o /tmp/Tahoe-beta-latest
+          python ./gibMacOS/gibMacOS.py -c developer -v Sequoia -m 15 -o /tmp/Sequoia-beta-latest
 
       - name: Install the assistant
         run: |
-          sudo installer -pkg /tmp/Tahoe-beta-latest/InstallAssistant.pkg -target /
+          sudo installer -pkg /tmp/Sequoia-beta-latest/InstallAssistant.pkg -target /
 
       - name: Generate macOS Installer
         run: |
@@ -39,10 +39,10 @@ jobs:
           echo "Installer size: $SIZE_MB MB"
           echo "Allocating DMG size: $TOTAL_MB MB"
 
-          sudo hdiutil create -o /tmp/Tahoe -size ${TOTAL_MB}m -volname 'Tahoe' -layout SPUD -fs HFS+J
-          sudo hdiutil attach /tmp/Tahoe.dmg -noverify -mountpoint /Volumes/Tahoe
+          sudo hdiutil create -o /tmp/Sequoia -size ${TOTAL_MB}m -volname 'Sequoia' -layout SPUD -fs HFS+J
+          sudo hdiutil attach /tmp/Sequoia.dmg -noverify -mountpoint /Volumes/Sequoia
           sleep 10
-          sudo "$INSTALLER/Contents/Resources/createinstallmedia" --volume /Volumes/Tahoe --nointeraction
+          sudo "$INSTALLER/Contents/Resources/createinstallmedia" --volume /Volumes/Sequoia --nointeraction
 
           # Detect created installer volume (it always starts with "Install")
           INSTALL_VOL=$(ls -d /Volumes/Install* | head -n 1 || true)
