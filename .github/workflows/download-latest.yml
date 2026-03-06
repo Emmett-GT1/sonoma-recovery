@@ -1,4 +1,4 @@
-name: Sequoia Beta (latest) Recovery Image
+name: Sequoia (latest) Recovery Image
 
 on:
   workflow_dispatch:
