@@ -1,15 +1,15 @@
-# A workflow file that generates macOS Sequoia recovery image
+# A workflow file that generates macOS Sonoma recovery image
 
 ### Full installer downloaded straight from Apple and then recover image is extracted
 
 # Why you may need this ?
 
-Without the recovery image, you need to be on macOS to install Sequoia. Since there's no stable release yet, no official recovery images are available either.
-This repo will fetch the full beta installer and zip what you need to have in order to install Sequoia from recovery.
+Without the recovery image, you need to be on macOS to install Sonoma. Since there's no stable release yet, no official recovery images are available either.
+This repo will fetch the full beta installer and zip what you need to have in order to install Sonoma from recovery.
 
 # How to use this ?
 
-Fork this repo and run `Generate macOS Sequoia Recovery Image` worflow.
+Fork this repo and run `Generate macOS Sonoma Recovery Image` worflow.
 
 Once done you will have com.apple.recovery.boot.zip artifact
 
