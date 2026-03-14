@@ -1,4 +1,4 @@
-name: Sequoia (latest) Recovery Image
+name: Sonoma (latest) Recovery Image
 
 on:
   workflow_dispatch:
@@ -15,11 +15,11 @@ jobs:
 
       - name: Download macOS Installer (latest beta)
         run: |
-          python ./gibMacOS/gibMacOS.py -c developer -v Sequoia -m 15 -o /tmp/Sequoia-beta-latest
+          python ./gibMacOS/gibMacOS.py -c developer -v Sonoma -m 14 -o /tmp/Sonoma-beta-latest
 
       - name: Install the assistant
         run: |
-          sudo installer -pkg /tmp/Sequoia-beta-latest/InstallAssistant.pkg -target /
+          sudo installer -pkg /tmp/Sonoma-beta-latest/InstallAssistant.pkg -target /
 
       - name: Generate macOS Installer
         run: |
@@ -39,10 +39,10 @@ jobs:
           echo "Installer size: $SIZE_MB MB"
           echo "Allocating DMG size: $TOTAL_MB MB"
 
-          sudo hdiutil create -o /tmp/Sequoia -size ${TOTAL_MB}m -volname 'Sequoia' -layout SPUD -fs HFS+J
-          sudo hdiutil attach /tmp/Sequoia.dmg -noverify -mountpoint /Volumes/Sequoia
+          sudo hdiutil create -o /tmp/Sonoma -size ${TOTAL_MB}m -volname 'Sonoma' -layout SPUD -fs HFS+J
+          sudo hdiutil attach /tmp/Sonoma.dmg -noverify -mountpoint /Volumes/Sonoma
           sleep 10
-          sudo "$INSTALLER/Contents/Resources/createinstallmedia" --volume /Volumes/Sequoia --nointeraction
+          sudo "$INSTALLER/Contents/Resources/createinstallmedia" --volume /Volumes/Sonoma --nointeraction
 
           # Detect created installer volume (it always starts with "Install")
           INSTALL_VOL=$(ls -d /Volumes/Install* | head -n 1 || true)
