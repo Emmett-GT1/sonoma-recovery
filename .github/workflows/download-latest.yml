@@ -1,4 +1,4 @@
-name: Sonoma (latest) Recovery Image
+name: Monterey (latest) Recovery Image
 
 on:
   workflow_dispatch:
@@ -15,11 +15,11 @@ jobs:
 
       - name: Download macOS Installer (latest beta)
         run: |
-          python ./gibMacOS/gibMacOS.py -c developer -v Sonoma -m 14 -o /tmp/Sonoma-beta-latest
+          python ./gibMacOS/gibMacOS.py -c developer -v Monterey -m 12 -o /tmp/Monterey-latest
 
       - name: Install the assistant
         run: |
-          sudo installer -pkg /tmp/Sonoma-beta-latest/InstallAssistant.pkg -target /
+          sudo installer -pkg /tmp/Monterey-latest/InstallAssistant.pkg -target /
 
       - name: Generate macOS Installer
         run: |
@@ -39,10 +39,10 @@ jobs:
           echo "Installer size: $SIZE_MB MB"
           echo "Allocating DMG size: $TOTAL_MB MB"
 
-          sudo hdiutil create -o /tmp/Sonoma -size ${TOTAL_MB}m -volname 'Sonoma' -layout SPUD -fs HFS+J
-          sudo hdiutil attach /tmp/Sonoma.dmg -noverify -mountpoint /Volumes/Sonoma
+          sudo hdiutil create -o /tmp/Monterey -size ${TOTAL_MB}m -volname 'Monterey' -layout SPUD -fs HFS+J
+          sudo hdiutil attach /tmp/Monterey.dmg -noverify -mountpoint /Volumes/Monterey
           sleep 10
-          sudo "$INSTALLER/Contents/Resources/createinstallmedia" --volume /Volumes/Sonoma --nointeraction
+          sudo "$INSTALLER/Contents/Resources/createinstallmedia" --volume /Volumes/Monterey --nointeraction
 
           # Detect created installer volume (it always starts with "Install")
           INSTALL_VOL=$(ls -d /Volumes/Install* | head -n 1 || true)
